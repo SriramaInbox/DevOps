@@ -9,15 +9,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: TerraformTaskV4@4
+- task: TerraformCLI@1
   displayName: Terraform Init
   inputs:
-    provider: 'azurerm'
-    command: 'init'
+    command: 'validate'
+    commandOptions: 'init'
+    allowTelemetryCollection: true
 
-- task: TerraformTaskV4@4
+- task: TerraformCLI@1
   displayName: Terraform Plan
   inputs:
-    provider: 'azurerm'
     command: 'plan'
-    environmentServiceNameAzureRM: 'Azure subscription 1(ce7d032e-6df9-4170-a5e5-1e161ccd69cd)'
+    environmentServiceName: 'Azure subscription 1(ce7d032e-6df9-4170-a5e5-1e161ccd69cd)'
+    allowTelemetryCollection: false
